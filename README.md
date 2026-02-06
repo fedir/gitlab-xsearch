@@ -64,6 +64,10 @@ Search for "TODO" within group ID `1234` (including subgroups):
 ```bash
 gitlab-xsearch --query "TODO" group 1234
 ```
+You can also limit the number of projects in a group search:
+```bash
+gitlab-xsearch --query "TODO" group 1234 --max 10
+```
 
 #### 4. Export to Excel
 ```bash

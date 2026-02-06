@@ -51,6 +51,9 @@ enum Commands {
         /// Group ID or encoded path
         #[arg(value_name = "GROUP_ID")]
         id: String,
+        /// Maximum number of projects to search (optional)
+        #[arg(long)]
+        max: Option<usize>,
     },
 }
 
@@ -73,7 +76,14 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
             }
             p
         }
-        Commands::Group { id } => client.get_projects(Some(&id)).await?,
+        Commands::Group { id, max } => {
+            let mut p = client.get_projects(Some(&id)).await?;
+            if let Some(m) = max {
+                println!("Note: Limited to first {} projects", m);
+                p.truncate(m);
+            }
+            p
+        }
     };
 
     println!(
