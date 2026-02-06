@@ -79,6 +79,11 @@ gitlab-xsearch --query "deprecated_api" --format excel -o results.xlsx global
 gitlab-xsearch --query "copyright" --format markdown -o report.md global
 ```
 
+#### 6. Combined Example (Excel + Max Limit + URL)
+```bash
+gitlab-xsearch --token 'mytoken' --query 'func' --url 'https://gitlab.company/' --format excel -o found.xls global --max 5
+```
+
 ## Development
 
 Requires Rust and Cargo.
